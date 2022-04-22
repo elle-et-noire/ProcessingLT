@@ -47,7 +47,8 @@ section {
 ;">
 <h1>使用するもの</h1>
 <ul>
-<li><strong>Processing</strong> プログラミング言語の名前であり、開発環境の名前でもある。<br />
+<li><strong>Processing</strong><br />
+プログラミング言語の名前であり、開発環境の名前でもある。<br />
 <a href="https://processing.org/download">ダウンロード先</a> （バージョンは 4.0 でも 3.5.4 でもOK）</li>
 <li><a href="https://drive.google.com/drive/folders/1OxtMl25cSQ5-Twdav7fAtkzKLNWT2V66?usp=sharing">サンプルプログラム shooting.pde</a><br />
 避けゲーのサンプル</li>
@@ -416,7 +417,7 @@ section {
 <p>決まった名前で関数を宣言しておくと、Processing のシステムから決まったタイミングで呼び出される。</p>
 <ul>
 <li><code>setup</code>：プログラム開始時に呼び出される。</li>
-<li><code>draw</code>：毎フレーム（60fpsなら1/60秒ごとに1回）呼び出される。</li>
+<li><code>draw</code>：毎フレーム（60fpsなら1/60秒ごとに1回）呼び出される。主に描画処理が書き込まれる。</li>
 <li><code>mousePressed</code>：右クリックや左クリック時に呼び出される。</li>
 </ul>
 <p>また、決まった名前の変数に Processing のシステムから勝手に値が代入される。</p>
@@ -570,11 +571,11 @@ section {
 }
 ;">
 <h1>文字列、<code>println</code></h1>
-<pre><code class="language-Java"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>（<span class="hljs-number">26</span>行目）println(<span class="hljs-string">&quot;GameStart!&quot;</span>);
+<pre><code class="language-Processing"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>（<span class="hljs-number">26</span>行目）<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;GameStart!&quot;</span>);
 </span></span></foreignObject></svg></code></pre>
 <ul>
 <li>文字列は<code>&quot;</code>（ダブルクオーテーション）で囲む。</li>
-<li><code>println</code>：文字列などを<strong>コンソール</strong>に出力する。</li>
+<li><code>println</code>：文字列などを<strong>コンソール</strong>に出力する。デバッグなどでよく使う。</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-heading-divider="1" data-style="section.title {
@@ -594,10 +595,341 @@ section {
     justify-content: start;
 }
 ;">
-<h1>注意</h1>
+<h1><code>setup</code> の流れ</h1>
+<ol>
+<li>ウィンドウサイズを調整。</li>
+<li>配列に実体を与える。</li>
+<li><code>for</code>文で全ての敵の位置をリセット。</li>
+<li><code>gameover</code>を<code>false</code>に（ゲーム開始時はゲームオーバーではないので）。</li>
+<li>コンソールに<code>GameStart!</code>と出力。</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;--style:section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+;">
+<h1>条件分岐</h1>
+<pre><code class="language-Java"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">if</span> (条件) {
+  処理<span class="hljs-number">1</span>
+} <span class="hljs-keyword">else</span> {
+  処理<span class="hljs-number">2</span>
+}
+</span></span></foreignObject></svg></code></pre>
+<p><code>条件</code>の部分にはboolean型の値が来る。<code>true</code>なら<code>処理1</code>が実行され、<code>false</code>なら<code>処理2</code>が実行される。選ばれなかった方の処理は実行されない。</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;--style:section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+;">
+<h1>比較演算子</h1>
+<p><strong>比較演算子</strong> は、2つの数の大小を比較して<code>true</code>や<code>false</code>を返す演算子。</p>
+<ul>
+<li>
+<p><code>==</code> は値が等しければ<code>true</code>となり、そうでなければ<code>false</code>となる。<code>1==1</code>は<code>true</code>。ちなみに<code>=</code>は代入の役割しかもたないので条件を書くべきところに書くとエラーになる。</p>
+</li>
+<li>
+<p><code>&lt;</code>：未満。</p>
+</li>
+<li>
+<p><code>&lt;=</code>：以下。</p>
+</li>
+<li>
+<p><code>&gt;</code>：より大きい。</p>
+</li>
+<li>
+<p><code>&gt;=</code>：以上。</p>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;--style:section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+;">
+<h1>比較演算子2</h1>
+<pre><code class="language-Java"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>;
+
+<span class="hljs-keyword">if</span> (a == b) {
+  println(<span class="hljs-string">&quot;a is equal to b.&quot;</span>); <span class="hljs-comment">// 実行されない。</span>
+}
+<span class="hljs-keyword">if</span> (a &lt; b) {
+  println(<span class="hljs-string">&quot;a is less than b.&quot;</span>); <span class="hljs-comment">// 実行される。</span>
+}
+<span class="hljs-keyword">if</span> (a &lt;= b) {
+  println(<span class="hljs-string">&quot;a is b or less.&quot;</span>); <span class="hljs-comment">// 実行される。</span>
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;--style:section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+;">
+<h1>否定演算子</h1>
+<p><code>!</code>をつけると<code>true</code>は<code>false</code>に、<code>false</code>は<code>true</code>になる。</p>
+<pre><code class="language-Java"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>（<span class="hljs-number">36</span>行目）<span class="hljs-keyword">if</span>(!gameover){ <span class="hljs-comment">//update characters&#x27; state</span>
+              ...
+（<span class="hljs-number">55</span>行目）}<span class="hljs-comment">//!gameover</span>
+</span></span></foreignObject></svg></code></pre>
+<p><code>gameover</code>が<code>true</code>ならこの中身は無視され、<code>false</code>なら実行される。</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;--style:section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+;">
+<h1>inside <code>if(!gameover)</code></h1>
+<ol>
+<li>全ての敵の位置に速度を加算。敵がその速度で動くことになる。
+<ul>
+<li><code>+=</code> は足して代入する、の意。<code>bulletY[i] = bulletY[i] + bulletVy[i];</code>と同じ。</li>
+</ul>
+</li>
+<li>敵が画面外に行く（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="0.2em"/><mi>y</mi><mspace width="0.2em"/></mrow><annotation encoding="application/x-tex">\hspace{0.2em}y\hspace{0.2em}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mspace" style="margin-right:0.2em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2em;"></span></span></span></span>座標が<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>480</mn></mrow><annotation encoding="application/x-tex">480</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">480</span></span></span></span>を超える）とその敵の位置をリセットする。</li>
+<li>敵のいずれかと自機が衝突していたら（後述）ゲームオーバーにする。</li>
+<li>自機の<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="0.2em"/><mi>x</mi><mspace width="0.2em"/></mrow><annotation encoding="application/x-tex">\hspace{0.2em}x\hspace{0.2em}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mspace" style="margin-right:0.2em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2em;"></span></span></span></span>座標をマウスカーソルの位置に更新する。</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;--style:section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+;">
+<h1>衝突判定（衝突しない）</h1>
+<p><img src="./image/collision-none.png" alt="" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;--style:section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+;">
+<h1>衝突判定（衝突する）</h1>
+<p><img src="./image/collision-enter.png" alt="" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;--style:section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+;">
+<h1><code>draw</code>関数残り</h1>
+<ol>
+<li>ゲームオーバーなら背景を赤く染める。
+<ul>
+<li><code>background(R,G,B)</code>で赤、緑、青の各強度を256段階（<code>0</code>から<code>255</code>）で設定できる。</li>
+</ul>
+</li>
+<li>ゲームオーバーでないなら背景を灰色に塗る。
+<ul>
+<li><code>background(128)</code>は<code>background(128,128,128)</code>と同じ（引数を3つ取る関数と引数を1つだけ取る関数が用意されている）。</li>
+</ul>
+</li>
+<li><code>fill</code> でその後描画する図形の色を指定。</li>
+<li>各敵機について描画。
+<ul>
+<li><code>ellipse(x,y,a,b)</code>で中心<code>(x,y)</code>、横<code>a</code>、縦<code>b</code>の楕円を描ける。</li>
+</ul>
+</li>
+<li>自機を描画。</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;--style:section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+;">
+<h1>さらに詳しく</h1>
+<ul>
+<li>
+<p><a href="https://p5codeschool.net/tutorial/">Processing チュートリアル</a><br />
+順番に読んでいけば一通りの知識が身に着く。このスライドの上位互換。3D図形の扱いやクラスについても解説されている。日本語。</p>
+</li>
+<li>
+<p><a href="https://processing.org/reference/">Reference</a><br />
+Processing 公式による言語解説。英語。辞書として使えそう。</p>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;--style:section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+;">
+<h1>改造しよう</h1>
+<ul>
+<li>敵機、自機の色を変える</li>
+<li>敵機の速度を変える</li>
+<li>自機が上下にも移動できるようにする</li>
+<li>敵機が斜めにも飛ぶようにする</li>
+<li>敵機の大きさをランダムにする</li>
+<li>ゲームオーバーしていないときはクリックでリセットされないようにする</li>
+<li>一発アウトではなく体力制にする</li>
+<li>その他思いついたこと</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;--style:section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+;">
+<h1>留意点</h1>
 <ul>
 <li>具体的な文法については、Processing 依存のものが多い（C, Javaでも成り立つものも多い。Python はまた全然違うように見えるが、具体的な記法が違うだけでやってることは同じ。）</li>
 </ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;--style:section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+;">
+<h1>謝辞</h1>
+<p>momasahiroさんのソースコードを使わせていただきました。</p>
+<p><a href="https://docs.google.com/presentation/d/1hKwD1g7ClZRvh_hS74O9nV99foyYQyvDfQZTYwHayU4/edit#slide=id.g5639a225e4_0_6">元ネタのスライド</a></p>
 </section>
 <script>!function(){"use strict";const t="marpitSVGPolyfill:setZoomFactor,",e=Symbol();let r,o;function n(n){const i="object"==typeof n&&n.target||document,a="object"==typeof n?n.zoom:n;window[e]||(Object.defineProperty(window,e,{configurable:!0,value:!0}),window.addEventListener("message",(({data:e,origin:r})=>{if(r===window.origin)try{if(e&&"string"==typeof e&&e.startsWith(t)){const[,t]=e.split(","),r=Number.parseFloat(t);Number.isNaN(r)||(o=r)}}catch(t){console.error(t)}})));let l=!1;Array.from(i.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,n,i,s;t.style.transform||(t.style.transform="translateZ(0)");const c=a||o||t.currentScale||1;r!==c&&(r=c,l=c);const d=t.getBoundingClientRect(),{length:f}=t.children;for(let r=0;r<f;r+=1){const o=t.children[r];if(o.getScreenCTM){const t=o.getScreenCTM();if(t){const r=null!==(n=null===(e=o.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==n?n:0,a=null!==(s=null===(i=o.y)||void 0===i?void 0:i.baseVal.value)&&void 0!==s?s:0,l=o.children.length;for(let e=0;e<l;e+=1){const n=o.children[e];if("SECTION"===n.tagName){const{style:e}=n;e.transformOrigin||(e.transformOrigin=`${-r}px ${-a}px`),e.transform=`scale(${c}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-d.left}, ${t.f-d.top}) translateZ(0.0001px)`;break}}}}}})),!1!==l&&Array.from(i.querySelectorAll("iframe"),(({contentWindow:e})=>{null==e||e.postMessage(`${t}${l}`,"null"===window.origin?"*":window.origin)}))}r=1,o=void 0;const i=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function a({once:t=!1,target:e=document}={}){const r="Apple Computer, Inc."===navigator.vendor?[n]:[];let o=!t;const a=()=>{for(const t of r)t({target:e});!function(t=document){Array.from(t.querySelectorAll('svg[data-marp-fitting="svg"]'),(t=>{var e;const r=t.firstChild,o=r.firstChild,{scrollWidth:n,scrollHeight:a}=o;let l,s=1;if(t.hasAttribute("data-marp-fitting-code")&&(l=null===(e=t.parentElement)||void 0===e?void 0:e.parentElement),t.hasAttribute("data-marp-fitting-math")&&(l=t.parentElement),l){const t=getComputedStyle(l),e=Math.ceil(l.clientWidth-parseFloat(t.paddingLeft||"0")-parseFloat(t.paddingRight||"0"));e&&(s=e)}const c=Math.max(n,s),d=Math.max(a,1),f=`0 0 ${c} ${d}`;i(r,"width",`${c}`),i(r,"height",`${d}`),i(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),i(t,"viewBox",f)&&t.classList.toggle("__reflow__")}))}(e),o&&window.requestAnimationFrame(a)};return a(),()=>{o=!1}}const l=Symbol(),s=document.currentScript;((t=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(t[l])return t[l];const e=a({target:t}),r=()=>{e(),delete t[l]};Object.defineProperty(t,l,{configurable:!0,value:r})})(s?s.getRootNode():document)}();
 </script></foreignObject></svg></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@1.7.1/lib/bespoke.js.LICENSE.txt */

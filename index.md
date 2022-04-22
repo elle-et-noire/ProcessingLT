@@ -17,7 +17,8 @@ style: |
 
 # 使用するもの
 
-- **Processing** プログラミング言語の名前であり、開発環境の名前でもある。
+- **Processing**
+プログラミング言語の名前であり、開発環境の名前でもある。
   [ダウンロード先](https://processing.org/download) （バージョンは 4.0 でも 3.5.4 でもOK）
 - [サンプルプログラム shooting.pde](https://drive.google.com/drive/folders/1OxtMl25cSQ5-Twdav7fAtkzKLNWT2V66?usp=sharing)
   避けゲーのサンプル
@@ -303,19 +304,52 @@ if (a <= b) {
 
 # 衝突判定（衝突しない）
 
-![](/image/collision-none.png)
+![](./image/collision-none.png)
 
 # 衝突判定（衝突する）
 
-![](/image/collision-enter.png)
+![](./image/collision-enter.png)
 
 
+# `draw`関数残り
+
+1. ゲームオーバーなら背景を赤く染める。
+   - `background(R,G,B)`で赤、緑、青の各強度を256段階（`0`から`255`）で設定できる。
+1. ゲームオーバーでないなら背景を灰色に塗る。
+   - `background(128)`は`background(128,128,128)`と同じ（引数を3つ取る関数と引数を1つだけ取る関数が用意されている）。
+1. `fill` でその後描画する図形の色を指定。
+1. 各敵機について描画。
+   - `ellipse(x,y,a,b)`で中心`(x,y)`、横`a`、縦`b`の楕円を描ける。
+1. 自機を描画。
+
+# さらに詳しく
+
+- [Processing チュートリアル](https://p5codeschool.net/tutorial/) 
+順番に読んでいけば一通りの知識が身に着く。このスライドの上位互換。3D図形の扱いやクラスについても解説されている。日本語。
+
+- [Reference](https://processing.org/reference/)
+Processing 公式による言語解説。英語。辞書として使えそう。
+
+# 改造しよう
+
+- 敵機、自機の色を変える
+- 敵機の速度を変える
+- 自機が上下にも移動できるようにする
+- 敵機が斜めにも飛ぶようにする
+- 敵機の大きさをランダムにする
+- ゲームオーバーしていないときはクリックでリセットされないようにする
+- 一発アウトではなく体力制にする
+- その他思いついたこと
 
 
-
-
-# 注意
+# 留意点
 
 - 具体的な文法については、Processing 依存のものが多い（C, Javaでも成り立つものも多い。Python はまた全然違うように見えるが、具体的な記法が違うだけでやってることは同じ。）
+
+# 謝辞
+
+momasahiroさんのソースコードを使わせていただきました。
+
+[元ネタのスライド](https://docs.google.com/presentation/d/1hKwD1g7ClZRvh_hS74O9nV99foyYQyvDfQZTYwHayU4/edit#slide=id.g5639a225e4_0_6)
 
 
