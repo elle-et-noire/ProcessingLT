@@ -310,7 +310,7 @@ section {
 <p>決まった名前で関数を宣言しておくと、Processing のシステムから決まったタイミングで呼び出される。</p>
 <ul>
 <li><code>setup</code>：プログラム開始時に呼び出される。</li>
-<li><code>draw</code>：毎フレーム（60fpsなら1/60秒ごとに1回）呼び出される。</li>
+<li><code>draw</code>：毎フレーム（60fpsなら1/60秒ごとに1回）呼び出される。主に描画処理が書き込まれる。</li>
 <li><code>mousePressed</code>：右クリックや左クリック時に呼び出される。</li>
 </ul>
 <p>また、決まった名前の変数に Processing のシステムから勝手に値が代入される。</p>
@@ -426,10 +426,168 @@ section {
 </span></span></foreignObject></svg></code></pre>
 <ul>
 <li>文字列は<code>&quot;</code>（ダブルクオーテーション）で囲む。</li>
-<li><code>println</code>：文字列などを<strong>コンソール</strong>に出力する。うお</li>
+<li><code>println</code>：文字列などを<strong>コンソール</strong>に出力する。デバッグなどでよく使う。</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;
+;">
+<h1><code>setup</code> の流れ</h1>
+<ol>
+<li>ウィンドウサイズを調整。</li>
+<li>配列に実体を与える。</li>
+<li><code>for</code>文で全ての敵の位置をリセット。</li>
+<li><code>gameover</code>を<code>false</code>に（ゲーム開始時はゲームオーバーではないので）。</li>
+<li>コンソールに<code>GameStart!</code>と出力。</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;
+;">
+<h1>条件分岐</h1>
+<pre><code class="language-Java"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">if</span> (条件) {
+  処理<span class="hljs-number">1</span>
+} <span class="hljs-keyword">else</span> {
+  処理<span class="hljs-number">2</span>
+}
+</span></span></foreignObject></svg></code></pre>
+<p><code>条件</code>の部分にはboolean型の値が来る。<code>true</code>なら<code>処理1</code>が実行され、<code>false</code>なら<code>処理2</code>が実行される。選ばれなかった方の処理は実行されない。</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;
+;">
+<h1>比較演算子</h1>
+<p><strong>比較演算子</strong> は、2つの数の大小を比較して<code>true</code>や<code>false</code>を返す演算子。</p>
+<ul>
+<li>
+<p><code>==</code> は値が等しければ<code>true</code>となり、そうでなければ<code>false</code>となる。<code>1==1</code>は<code>true</code>。ちなみに<code>=</code>は代入の役割しかもたないので条件を書くべきところに書くとエラーになる。</p>
+</li>
+<li>
+<p><code>&lt;</code>：未満。</p>
+</li>
+<li>
+<p><code>&lt;=</code>：以下。</p>
+</li>
+<li>
+<p><code>&gt;</code>：より大きい。</p>
+</li>
+<li>
+<p><code>&gt;=</code>：以上。</p>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;
+;">
+<h1>比較演算子2</h1>
+<pre><code class="language-Java"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>;
+
+<span class="hljs-keyword">if</span> (a == b) {
+  println(<span class="hljs-string">&quot;a is equal to b.&quot;</span>); <span class="hljs-comment">// 実行されない。</span>
+}
+<span class="hljs-keyword">if</span> (a &lt; b) {
+  println(<span class="hljs-string">&quot;a is less than b.&quot;</span>); <span class="hljs-comment">// 実行される。</span>
+}
+<span class="hljs-keyword">if</span> (a &lt;= b) {
+  println(<span class="hljs-string">&quot;a is b or less.&quot;</span>); <span class="hljs-comment">// 実行される。</span>
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;
+;">
+<h1>否定演算子</h1>
+<p><code>!</code>をつけると<code>true</code>は<code>false</code>に、<code>false</code>は<code>true</code>になる。</p>
+<pre><code class="language-Java"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>（<span class="hljs-number">36</span>行目）<span class="hljs-keyword">if</span>(!gameover){ <span class="hljs-comment">//update characters&#x27; state</span>
+              ...
+（<span class="hljs-number">55</span>行目）}<span class="hljs-comment">//!gameover</span>
+</span></span></foreignObject></svg></code></pre>
+<p><code>gameover</code>が<code>true</code>ならこの中身は無視され、<code>false</code>なら実行される。</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;
+;">
+<h1>inside <code>if(!gameover)</code></h1>
+<ol>
+<li>全ての敵の位置に速度を加算。敵がその速度で動くことになる。
+<ul>
+<li><code>+=</code> は足して代入する、の意。<code>bulletY[i] = bulletY[i] + bulletVy[i];</code>と同じ。</li>
+</ul>
+</li>
+<li>敵が画面外に行く（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="0.2em"/><mi>y</mi><mspace width="0.2em"/></mrow><annotation encoding="application/x-tex">\hspace{0.2em}y\hspace{0.2em}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mspace" style="margin-right:0.2em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2em;"></span></span></span></span>座標が<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>480</mn></mrow><annotation encoding="application/x-tex">480</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">8</span><span class="mord">0</span></span></span></span>を超える）とその敵の位置をリセットする。</li>
+<li>敵のいずれかと自機が衝突していたら（後述）ゲームオーバーにする。</li>
+<li>自機の<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="0.2em"/><mi>x</mi><mspace width="0.2em"/></mrow><annotation encoding="application/x-tex">\hspace{0.2em}x\hspace{0.2em}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mspace" style="margin-right:0.2em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2em;"></span></span></span></span>座標をマウスカーソルの位置に更新する。</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;
+;">
+<h1>衝突判定（衝突しない）</h1>
+<p><img src="/image/collision-none.png" alt="" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-heading-divider="1" data-style="section.title {
+    justify-content: center;
+    text-align: center;
+}
+
+section {
+    justify-content: start;
+}
+" style="--heading-divider:1;
+;">
+<h1>衝突判定（衝突する）</h1>
+<p><img src="/image/collision-enter.png" alt="" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-heading-divider="1" data-style="section.title {
     justify-content: center;
     text-align: center;
 }
