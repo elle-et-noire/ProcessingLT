@@ -216,7 +216,7 @@ for (int i = 0; i < 繰り返す回数; i++) {
 
 ![](./image/coord-w.png)
 
-# `resetBullet`
+# `resetBullet` 名前の通り。
 
 ```Java
 void resetBullet(int i) {
@@ -227,6 +227,15 @@ void resetBullet(int i) {
 ```
 
 `i`番目の敵の位置をリセット。
+
+# 文字列、`println`
+
+```Java
+（26行目）println("GameStart!");
+```
+
+- 文字列は`"`（ダブルクオーテーション）で囲む。
+- `println`：文字列などを**コンソール**に出力する。
 
 # 注意
 
