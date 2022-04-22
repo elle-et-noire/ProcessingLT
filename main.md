@@ -214,9 +214,19 @@ for (int i = 0; i < 繰り返す回数; i++) {
 
 # ウィンドウ上の座標
 
-[](./image/coord.png)
+![](./image/coord-w.png)
 
 # `resetBullet`
+
+```Java
+void resetBullet(int i) {
+  bulletX[i] = random(0, 640);
+  bulletY[i] = 0;
+  bulletVy[i] = random(0.8, 4.0);
+}
+```
+
+`i`番目の敵の位置をリセット。
 
 # 注意
 
