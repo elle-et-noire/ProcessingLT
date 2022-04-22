@@ -230,12 +230,12 @@ void resetBullet(int i) {
 
 # 文字列、`println`
 
-```Java
+```Processing
 （26行目）println("GameStart!");
 ```
 
 - 文字列は`"`（ダブルクオーテーション）で囲む。
-- `println`：文字列などを**コンソール**に出力する。
+- `println`：文字列などを**コンソール**に出力する。うお
 
 # 注意
 
